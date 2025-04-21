@@ -114,6 +114,25 @@ public class PatientInfoServiceImpl implements PatientInfoService {
             return list;
         });
     }
+
+    @Override
+    public boolean updatePatientInfo(Long id, PatientInfoDto dto) {
+            String sql = "UPDATE patient_info SET patient_name = ?, surgeon_name = ?, operation_name = ?, ot_room = ?, gender = ?, age = ?, remarks = ?, status = ?, flag = ? WHERE id = ?";
+            int rows = secondaryJdbcTemplate.update(sql,
+                    dto.getPatientName(),
+                    dto.getSurgeonName(),
+                    dto.getOperationName(),
+                    dto.getOtRoom(),
+                    dto.getGender(),
+                    dto.getAge(),
+                    dto.getRemarks(),
+                    dto.getStatus(),
+                    dto.getFlag(),
+                    id
+            );
+            return rows > 0;
+        }
+    }
 /*
     @Override
     public List<PatientInfoDto> getFromLims() {
@@ -150,4 +169,15 @@ public class PatientInfoServiceImpl implements PatientInfoService {
     }
     */
 
-}
+//{
+//        "patientName": "John Doe",
+//        "surgeonName": "Dr. Smith",
+//        "operationName": "Appendectomy",
+//        "otRoom": "OT-3",
+//        "gender": "Male",
+//        "age": "35",
+//        "remarks": "Stable",
+//        "status": "Completed",
+//        "flag": "N"
+//        }
+

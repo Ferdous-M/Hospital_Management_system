@@ -13,5 +13,5 @@ public interface PatientInfoService {
     List<PatientInfoDto> getAllPatientInfoFromSecondaryDb();
 
 
-
+    boolean updatePatientInfo(Long id, PatientInfoDto dto);
 }
